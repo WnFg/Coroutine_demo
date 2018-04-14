@@ -9,5 +9,5 @@ test文件，一个简单的实验。其中coroutineMain为主协程，相当于
 ![bianyi](https://github.com/WnFg/Coroutine_demo/blob/master/img/bianyi.png)
 
 输出:
-![shuchu]((https://github.com/WnFg/Coroutine_demo/blob/master/img/shuchu.png))
+![shuchu](https://github.com/WnFg/Coroutine_demo/blob/master/img/shuchu.png)
 
