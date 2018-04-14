@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ctime.h"
+#include "coroutine.h"
 
 typedef struct Context
 {
@@ -16,7 +17,9 @@ typedef struct Context
 	void* rsp;
 } Context;
 
-typedef void (*Task)(void*);
+// 主协程，外部引用
+void coroutineMain(void* args);
+
 // 事件
 typedef void* Event;
 
@@ -171,31 +174,14 @@ void scheduler() {
 	}
 }
 
-void task1(void* args) {
-	int i = 0;
-	for (; i < 20; i++) {
-		printf("i am task1\n\n");
-		csleep(1000);
-	}
-	cotExit();
-}
-
-void task2(void* args) {
-	int i = 0;
-	for (; i < 20; i++) {
-		printf("i am task2\n\n");
-		csleep(1000);
-	}
-	cotExit();
-}
-
+// 启动主协程
 int main()
 {	
-	createCoroutine(task1, NULL);
-	createCoroutine(task2, NULL);
+	createCoroutine(coroutineMain, NULL);
 	scheduler();
 	return 0;
 }
+
 
 ULL nsec(void) {
 	struct timeval tv;
